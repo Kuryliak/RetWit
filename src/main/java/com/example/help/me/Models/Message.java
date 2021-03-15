@@ -1,4 +1,4 @@
-package com.example.help.me.Model;
+package com.example.help.me.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
