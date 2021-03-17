@@ -1,9 +1,6 @@
 package com.example.help.me.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Message {
@@ -12,12 +9,14 @@ public class Message {
     private Integer id;
     private String message;
     private String tag;
-      public Message(){
 
-      }
     public Message(String message, String tag) {
         this.message = message;
         this.tag = tag;
+
+    }
+    public Message(){
+
     }
 
     public Integer getId() {
@@ -39,6 +38,7 @@ public class Message {
     public String getTag() {
         return tag;
     }
+
 
     public void setTag(String tag) {
         this.tag = tag;

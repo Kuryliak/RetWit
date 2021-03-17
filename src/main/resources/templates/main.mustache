@@ -3,27 +3,32 @@
 <body>
 <div>
     <div>
-        <form action="/logout" method="post">
-            <input type="submit" value="Sign Out"/>
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-
+        <center>
+            <form action="/logout" method="post">
+                <input type="submit" value="Sign Out"/>
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         </form>
+            </center>
     </div>
     <form method="post">
-        <input type="text" name="message" placeholder="Введите сообщение" />
-        <input type="text" name="tag" placeholder="Тэг">
-        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-
-        <button type="submit">Добавить</button>
+        <center>
+            <input type="text" name="message" placeholder="Введите сообщение" />
+            <input type="text" name="tag" placeholder="Тэг">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+ <br/>
+            <button type="submit">Добавить</button>
+        </center>
     </form>
 </div>
-<div>Список сообщений</div>
+<div> <center style="color:blue"> Список сообщений</center>
 <form method="post" action="filter">
+        <center>
     <input type="message" name="filter">
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-
     <button type="submit">Найти</button>
+    </center>
 </form>
+<center>
 {{#messages}}
     <div>
         <b>{{id}}</b>
@@ -31,5 +36,10 @@
         <i>{{tag}}</i>
     </div>
 {{/messages}}
+</center>
+    <center>
+        <a href="/user">user list</a>
+    </center>
+
 </body>
 </html>

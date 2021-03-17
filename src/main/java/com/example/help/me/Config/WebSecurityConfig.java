@@ -1,5 +1,6 @@
 package com.example.help.me.Config;
 
+import com.example.help.me.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,8 @@ import javax.xml.crypto.Data;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,16 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll();
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("1")
-                        .password("2")
-                        .roles("USER")
-                        .build();
+     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userService).
+       passwordEncoder(NoOpPasswordEncoder.getInstance());
+     }
 
-        return new InMemoryUserDetailsManager(user);
     }
-}
