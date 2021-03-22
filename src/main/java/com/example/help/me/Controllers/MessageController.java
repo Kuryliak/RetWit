@@ -1,11 +1,11 @@
 package com.example.help.me.Controllers;
 
 import com.example.help.me.Models.Message;
+import com.example.help.me.Models.User;
 import com.example.help.me.Repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,9 +48,9 @@ public class MessageController {
     }
 
     @PostMapping("/main")
-    public String add(@AuthenticationPrincipal User user,@RequestParam("file") MultipartFile file,
+    public String add(@AuthenticationPrincipal User user, @RequestParam("file") MultipartFile file,
                       @RequestParam String message, @RequestParam String tag, Map<String, Object> model) throws IOException {
-        Message message1 = new Message(message,tag);
+        Message message1 = new Message(message,tag, user);
 
         if (file!= null && !file.getOriginalFilename().isEmpty()){
           File uploadDirectory = new File(uploadPath);
