@@ -9,15 +9,15 @@ public class Message {
     private Integer id;
     private String message;
     private String tag;
-
-    public Message(String message, String tag) {
-        this.message = message;
-        this.tag = tag;
-
-    }
+    private String file;
     public Message(){
 
     }
+    public Message(String message, String tag) {
+        this.message = message;
+        this.tag = tag;
+    }
+
 
     public Integer getId() {
         return id;
@@ -42,5 +42,13 @@ public class Message {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
     }
 }
