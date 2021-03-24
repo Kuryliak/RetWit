@@ -4,7 +4,7 @@
 <div class="form-row">
     <div class="form-group col-md-6">
         <form method="get" action="/main" class="form-inline">
-            <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by tag">
+            <input type="text" name="filter" class="form-control" value="${filter!}" placeholder="Search by message">
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
     </div>
@@ -17,10 +17,7 @@
     <div class="form-group mt-3">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" class="form-control" name="message" placeholder="Введите сообщение" />
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="tag" placeholder="Тэг">
+                <input type="message" class="form-control" name="message" placeholder="Введите сообщение" />
             </div>
             <div class="form-group">
                 <div class="custom-file">
@@ -44,7 +41,6 @@
     </#if>
     <div class="m-2">
         <span>${message.message}</span>
-        <i>${message.tag}</i>
     </div>
     <div class="card-footer text-muted">
         ${message.authorName}

@@ -38,7 +38,7 @@ public class MessageController {
         Iterable<Message> messages = messageRepository.findAll();
 
         if (filter != null && !filter.isEmpty()) {
-            messages = messageRepository.findByTag(filter);
+            messages = messageRepository.findByMessage(filter);
         } else {
             messages = messageRepository.findAll();
         }
@@ -49,8 +49,8 @@ public class MessageController {
 
     @PostMapping("/main")
     public String add(@AuthenticationPrincipal User user, @RequestParam("file") MultipartFile file,
-                      @RequestParam String message, @RequestParam String tag, Map<String, Object> model) throws IOException {
-        Message message1 = new Message(message,tag, user);
+                      @RequestParam String message, Map<String, Object> model) throws IOException {
+        Message message1 = new Message(message,user);
 
         if (file!= null && !file.getOriginalFilename().isEmpty()){
           File uploadDirectory = new File(uploadPath);

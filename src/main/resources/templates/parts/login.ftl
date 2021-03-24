@@ -1,4 +1,3 @@
-
 <#macro login path isRegisterForm>
 <form action="${path}" method="post">
     <div class="form-group row">
