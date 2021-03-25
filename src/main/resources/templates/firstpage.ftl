@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<h5>Hello,User!</h5>
-<h4>It's a clone of Twitter</h4>
+<h1>Hello,User!</h1>
+<h3>It's a clone of Twitter</h3>
 </@c.page>

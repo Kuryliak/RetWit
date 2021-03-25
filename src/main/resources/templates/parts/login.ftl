@@ -1,15 +1,20 @@
 <#macro login path isRegisterForm>
 <form action="${path}" method="post">
-    <div class="form-group row">
+    <link rel="stylesheet" href="/static/style.css">
+
+
+    <div  for="validationDefaultUsername" class="form-group row">
         <label class="position-absolute top-0 end-0"></label>
-        <div class="col-sm-6">
-            <input type="text" name="username" class="form-control" placeholder="User name" />
+        <div class="col-sm-4">
+            <input type="text" name="username" class="form-control" id="validationDefaultUsername"
+                   aria-describedby="inputGroupPrepend2" required placeholder="User name" />
         </div>
     </div>
-    <div class="form-group row">
-        <label class="position-absolute top-0 end-0"></label>
-        <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" placeholder="Password" />
+    <div for="validationDefaultUsername" class="form-group row">
+        <label for class="position-absolute top-0 end-0"></label>
+        <div class="col-sm-4">
+            <input type="password" name="password" class="form-control" id="validationDefaultUsername1"
+                   aria-describedby="inputGroupPrepend2" required placeholder="Password" />
         </div>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
