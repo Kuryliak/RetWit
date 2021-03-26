@@ -3,13 +3,12 @@ package com.example.help.me.Service;
 import com.example.help.me.Models.Role;
 import com.example.help.me.Models.User;
 import com.example.help.me.Repository.UserRepository;
-import freemarker.template.utility.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +20,8 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -49,21 +50,12 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void updateUser(User user, String password, String username) {
+    public void updateUser(User user, String password) {
         String userPassword = user.getPassword();
-        String userName = user.getUsername();
 
-        Boolean passwordChanged = (password != null);
-
-        if (passwordChanged) {
-            user.setPassword(password);
+        boolean passwordChanged = (password != null);
+        if (passwordChanged)
             userRepository.save(user);
-        }
-        Boolean userNameChanged = (username != null);
 
-        if (userNameChanged) {
-            user.setUsername(username);
-            userRepository.save(user);
         }
     }
-}

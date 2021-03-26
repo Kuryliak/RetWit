@@ -1,6 +1,5 @@
 package com.example.help.me.Models;
 
-import com.example.help.me.Models.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,7 +15,6 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private String nickname;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
@@ -47,14 +45,6 @@ public class User implements UserDetails {
     @Override
     public boolean isAccountNonLocked() {
         return true ;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     @Override

@@ -5,15 +5,12 @@
 ${message?ifExists}
 <form  method="post">
     <div class="form-group row">
-        <label class="position-absolute top-0 end-0"></label>
-        <div class="col-sm-3">
-            <input type="text" name="username" class="form-control" placeholder="User name" />
-        </div>
     </div>
-    <div class="form-group row">
-        <label class="position-absolute top-0 end-0"></label>
+    <div for="validationDefaultUsername" class="form-group row">
+        <label for class="position-absolute top-0 end-0"></label>
         <div class="col-sm-3">
-            <input type="password" name="password" class="form-control" placeholder="Password" />
+            <input type="password" name="password" class="form-control" id="validationDefaultUsername1"
+                   aria-describedby="inputGroupPrepend2" required placeholder="new password" />
         </div>
     </div>
     <div>

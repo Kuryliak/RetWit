@@ -7,6 +7,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String message;
     private String file;
     @ManyToOne(fetch = FetchType.EAGER)

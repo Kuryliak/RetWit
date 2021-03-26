@@ -53,8 +53,9 @@ public class UserController {
     }
     @PostMapping("profile")
     public String saveUserProfileChanges(@AuthenticationPrincipal User user,
-            @RequestParam String password,@RequestParam String username,Model model){
-        userService.updateUser(user,password,username);
+
+            @RequestParam String password,Model model){
+        userService.updateUser(user,password);
         return "redirect:/user/profile";
     }
 }
