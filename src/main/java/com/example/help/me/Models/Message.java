@@ -1,6 +1,7 @@
 package com.example.help.me.Models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Message {
@@ -50,6 +51,7 @@ public class Message {
     public void setAuthor(User author) {
         this.author = author;
     }
+
 
 
     public String getFile() {

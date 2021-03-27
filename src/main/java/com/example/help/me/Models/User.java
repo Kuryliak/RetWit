@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -20,6 +22,23 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Message> messageSet;
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     public Boolean isAdmin(){
         return roles.contains(Role.ADMIN);
@@ -74,6 +93,13 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public Set<Message> getMessageSet() {
+        return messageSet;
+    }
+
+    public void setMessageSet(Set<Message> messageSet) {
+        this.messageSet = messageSet;
+    }
 
     public Set<Role> getRoles() {
         return roles;
