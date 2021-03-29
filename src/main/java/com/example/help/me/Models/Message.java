@@ -9,6 +9,7 @@ public class Message {
     private Integer id;
     private String message;
     private String tag;
+    private String filename;
 
     public Message(String message, String tag) {
         this.message = message;
@@ -42,5 +43,13 @@ public class Message {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

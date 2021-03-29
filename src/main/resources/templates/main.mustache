@@ -10,10 +10,12 @@
         </form>
             </center>
     </div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <center>
             <input type="text" name="message" placeholder="Введите сообщение" />
             <input type="text" name="tag" placeholder="Тэг">
+            <input type="file" name="file">
+
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
  <br/>
             <button type="submit">Добавить</button>
@@ -34,12 +36,17 @@
         <b>{{id}}</b>
         <span>{{message}}</span>
         <i>{{tag}}</i>
+        <div>
+            {{#message.filename}}
+                <img src="/img/${message.filename}">
+            {{/message.filename}}
+        </div>
     </div>
 {{/messages}}
 </center>
     <center>
         <a href="/user">user list</a>
     </center>
-
+</div>
 </body>
 </html>
