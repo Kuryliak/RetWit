@@ -25,7 +25,20 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Message> messageSet;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscriptions",
+            joinColumns = { @JoinColumn(name = "channel_id") },
+            inverseJoinColumns = { @JoinColumn(name = "subscriber_id") }
+    )
+    private  Set<User> subrscribers = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscriptions",
+            joinColumns = { @JoinColumn(name = "subscriber_id") },
+            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
+    )
+    private Set<User> subriptions = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -78,6 +91,22 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Set<User> getSubrscribers() {
+        return subrscribers;
+    }
+
+    public void setSubrscribers(Set<User> subrscribers) {
+        this.subrscribers = subrscribers;
+    }
+
+    public Set<User> getSubriptions() {
+        return subriptions;
+    }
+
+    public void setSubriptions(Set<User> subriptions) {
+        this.subriptions = subriptions;
     }
 
     @Override

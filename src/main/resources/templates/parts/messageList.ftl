@@ -10,7 +10,7 @@
         <span>${message.message}</span><br/>
     </div>
     <div class="card-footer text-muted">
-        <a class="link-dark" href="/user-messages/${message.author.id}">${message.authorName}</a>
+        <a href="/user-messages/${message.author.id}">${message.authorName}</a>
 </div>
 </div>
 <#else>

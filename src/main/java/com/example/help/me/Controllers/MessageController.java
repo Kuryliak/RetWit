@@ -72,20 +72,22 @@ public class MessageController {
         return "main";
     }
     @GetMapping("/user-messages/{user}")
-    public String userMessages(@AuthenticationPrincipal User currentUser,
-                               @PathVariable User user,
-                               Model model){
-
+    public String userMessges(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user,
+            Model model,
+            @RequestParam(required = false) Message message
+    ) {
         Set<Message> messages = user.getMessageSet();
         model.addAttribute("userChannel",user);
         model.addAttribute("messages",messages);
+        model.addAttribute("userChannel",user);
+        model.addAttribute("user_subscribers",user.getSubrscribers().size());
+        model.addAttribute("user_subscriptions",user.getSubriptions().size());
+        model.addAttribute("isSubscriber", user.getSubrscribers().contains(currentUser));
         model.addAttribute("isCurrentUser",currentUser.equals(user));
         return "userMessages";
     }
-    @DeleteMapping("delete")
-    public void deleteMessage(@PathVariable Message message){
-        messageRepository.deleteByMessage(message.getMessage());
-    }
-  }
+}
 
 

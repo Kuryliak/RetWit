@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,11 +53,20 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUser(User user, String password) {
-        String userPassword = user.getPassword();
+        if (!StringUtils.isEmpty(password)) {
+            user.setPassword(passwordEncoder.encode(password));
+        }
+        userRepository.save(user);
+    }
 
-        boolean passwordChanged = (password != null);
-        if (passwordChanged)
-            userRepository.save(user);
 
+        public void subscribe(User currentUser,User user){
+        user.getSubrscribers().add(currentUser);
+        userRepository.save(user);
+        }
+
+        public void unsubscribe(User currentUser,User user){
+        user.getSubrscribers().remove(currentUser);
+        userRepository.save(user);
         }
     }
