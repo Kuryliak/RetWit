@@ -1,1 +1,1 @@
-my first app with using a spring boot,spring data jpa&mustache
+A simple twitter copy.

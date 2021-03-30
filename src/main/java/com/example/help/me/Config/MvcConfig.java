@@ -8,7 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e398778abf5036baba162ba24b66bc22bd92552
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -18,7 +21,14 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+<<<<<<< HEAD
         registry.addResourceHandler("/img/**").
          addResourceLocations("file///" + uploadPath + "/");
+=======
+        registry.addResourceHandler("/img/**")
+         .addResourceLocations("file:///" + uploadPath + "/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+>>>>>>> 8e398778abf5036baba162ba24b66bc22bd92552
     }
 }
