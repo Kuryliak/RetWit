@@ -1,9 +1,8 @@
-
+files/
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-/files/
 !**/src/test/**/target/
 
 ### STS ###
@@ -33,4 +32,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/files/
