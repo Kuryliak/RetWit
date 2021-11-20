@@ -60,13 +60,13 @@ public class UserService implements UserDetailsService {
     }
 
 
-        public void subscribe(User currentUser,User user){
+    public void subscribe(User currentUser, User user) {
         user.getSubrscribers().add(currentUser);
         userRepository.save(user);
-        }
+    }
 
-        public void unsubscribe(User currentUser,User user){
+    public void unsubscribe(User currentUser, User user) {
         user.getSubrscribers().remove(currentUser);
         userRepository.save(user);
-        }
     }
+}

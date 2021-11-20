@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface MessageRepository extends CrudRepository<Message,Long>{
     List<Message> findByMessage(String message);
-    List<Message> deleteByMessage(String message);
 }

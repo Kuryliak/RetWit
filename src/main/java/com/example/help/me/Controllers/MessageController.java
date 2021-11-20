@@ -32,7 +32,7 @@ public class MessageController {
 
 
     @GetMapping("/main")
-    public String main(Model model,String filter) {
+    public String main(Model model, String filter) {
         Iterable<Message> messages = messageRepository.findAll();
 
         if (filter != null && !filter.isEmpty()) {
@@ -41,24 +41,24 @@ public class MessageController {
             messages = messageRepository.findAll();
         }
         model.addAttribute("messages", messages);
-        model.addAttribute("filter",filter);
+        model.addAttribute("filter", filter);
         return "main";
     }
 
     @PostMapping("/main")
     public String add(@AuthenticationPrincipal User user, @RequestParam("file") MultipartFile file,
                       @RequestParam String message, Map<String, Object> model) throws IOException {
-        Message message1 = new Message(message,user);
+        Message message1 = new Message(message, user);
 
-        if (file!= null && !file.getOriginalFilename().isEmpty()){
-          File uploadDirectory = new File(uploadPath);
-          if (!uploadDirectory.exists()){
-              uploadDirectory.mkdir();
-          }
-           String randomid =  UUID.randomUUID().toString();
-            String resultname =  randomid + "." + file.getOriginalFilename();
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDirectory = new File(uploadPath);
+            if (!uploadDirectory.exists()) {
+                uploadDirectory.mkdir();
+            }
+            String randomid = UUID.randomUUID().toString();
+            String resultname = randomid + "." + file.getOriginalFilename();
 
-            file.transferTo(new File(uploadPath +"/" + resultname));
+            file.transferTo(new File(uploadPath + "/" + resultname));
 
             message1.setFile(resultname);
         }
@@ -71,6 +71,7 @@ public class MessageController {
 
         return "main";
     }
+
     @GetMapping("/user-messages/{user}")
     public String userMessges(
             @AuthenticationPrincipal User currentUser,
@@ -79,15 +80,16 @@ public class MessageController {
             @RequestParam(required = false) Message message
     ) {
         Set<Message> messages = user.getMessageSet();
-        model.addAttribute("userChannel",user);
-        model.addAttribute("messages",messages);
-        model.addAttribute("userChannel",user);
-        model.addAttribute("user_subscribers",user.getSubrscribers().size());
-        model.addAttribute("user_subscriptions",user.getSubriptions().size());
+        model.addAttribute("userChannel", user);
+        model.addAttribute("messages", messages);
+        model.addAttribute("userChannel", user);
+        model.addAttribute("user_subscribers", user.getSubrscribers().size());
+        model.addAttribute("user_subscriptions", user.getSubriptions().size());
         model.addAttribute("isSubscriber", user.getSubrscribers().contains(currentUser));
-        model.addAttribute("isCurrentUser",currentUser.equals(user));
+        model.addAttribute("isCurrentUser", currentUser.equals(user));
         return "userMessages";
     }
-}
+        }
+
 
 
